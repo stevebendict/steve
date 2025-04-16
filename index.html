@@ -17,7 +17,7 @@
         header {
             background: linear-gradient(90deg, #5c6bc0, #42a5f5);
             color: white;
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
         }
 
@@ -29,18 +29,6 @@
         header p {
             font-size: 20px;
             margin-top: 10px;
-        }
-
-        .intro {
-            text-align: center;
-            margin: 50px 20px;
-        }
-
-        .intro p {
-            font-size: 18px;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .cta-buttons {
@@ -111,6 +99,39 @@
             background-color: #1e88e5;
         }
 
+        .kol-section {
+            background-color: #333333;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .kol-section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .kol-cards {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .kol-card {
+            background-color: #444;
+            width: 250px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .kol-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
         footer {
             background-color: #1e1e1e;
             color: white;
@@ -126,17 +147,9 @@
     <p>Web3 Developer, Telegram Bot Expert, Community Builder</p>
 </header>
 
-<div class="intro">
-    <p>Hello! I'm Steve, a Web3 enthusiast specializing in Telegram bots and blockchain technology. With experience building innovative solutions like mini-apps, I am passionate about empowering users in the Web3 space. Let me show you some of my projects and contributions to the community.</p>
-</div>
-
 <div class="cta-buttons">
+    <a href="https://t.me/stevebendict" target="_blank">My Telegram</a>
     <a href="https://github.com/blockchang" target="_blank">My GitHub</a>
-    <a href="https://t.me/stevebendict" target="_blank">Telegram</a>
-    <a href="https://www.instagram.com/vanesgd" target="_blank">Web3 KOL: Vanesgd</a>
-    <a href="https://www.instagram.com/tradewithsuli" target="_blank">Web3 KOL: Tradewithsuli</a>
-    <a href="https://www.instagram.com/febimettasari" target="_blank">Web3 KOL: Febimettasari</a>
-    <a href="https://www.instagram.com/morethanspeculation" target="_blank">Web3 KOL: Morethanspeculation</a>
 </div>
 
 <div class="projects-section">
@@ -153,9 +166,41 @@
             <a href="https://github.com/blockchang/DAO-alert-bot" target="_blank">View Project</a>
         </div>
         <div class="project-card">
+            <h3>@BZwalletBot</h3>
+            <p>Ethereum wallet checks using Alchemy API.</p>
+            <a href="https://github.com/blockchang/ethereum-wallet-bot" target="_blank">View Project</a>
+        </div>
+        <div class="project-card">
+            <h3>@BZdaoBot</h3>
+            <p>DAO alerts via Snapshot API integrated with Telegram groups.</p>
+            <a href="https://github.com/blockchang/DAO-alert-bot" target="_blank">View Project</a>
+        </div>
+        <div class="project-card">
             <h3>@BZdonateBot</h3>
             <p>TON-based donation system integrated with Telegram groups.</p>
             <a href="https://github.com/blockchang/bzdonate" target="_blank">View Project</a>
+        </div>
+    </div>
+</div>
+
+<div class="kol-section">
+    <h2>My Web3 KOL Network</h2>
+    <div class="kol-cards">
+        <div class="kol-card">
+            <h3>@vanesgd</h3>
+            <a href="https://www.instagram.com/vanesgd" target="_blank">View Profile</a>
+        </div>
+        <div class="kol-card">
+            <h3>@tradewithsuli</h3>
+            <a href="https://www.instagram.com/tradewithsuli" target="_blank">View Profile</a>
+        </div>
+        <div class="kol-card">
+            <h3>@febimettasari</h3>
+            <a href="https://www.instagram.com/febimettasari" target="_blank">View Profile</a>
+        </div>
+        <div class="kol-card">
+            <h3>@morethanspeculation</h3>
+            <a href="https://www.instagram.com/morethanspeculation" target="_blank">View Profile</a>
         </div>
     </div>
 </div>
