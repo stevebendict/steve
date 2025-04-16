@@ -1,265 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steve Benedict's Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- FontAwesome for icons -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlockZhang's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        header {
-            background: linear-gradient(90deg, #5c6bc0, #42a5f5);
-            color: white;
-            padding: 120px 20px;
-            text-align: center;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        header h1 {
-            font-size: 72px;
-            font-weight: 600;
-            line-height: 1.2;
-            margin: 0;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FFFFFF;
+      color: #000000;
+      line-height: 1.6;
+    }
 
-        header p {
-            font-size: 24px;
-            margin-top: 10px;
-            font-weight: 400;
-        }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #FFFFFF;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
+    .navbar a {
+      color: #000000;
+      text-decoration: none;
+      font-size: 16px;
+      margin-left: 30px;
+      transition: color 0.3s ease;
+    }
 
-        .cta-buttons a {
-            background-color: #42a5f5;
-            color: white;
-            padding: 16px 40px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 18px;
-            transition: background-color 0.3s;
-        }
+    .navbar a:hover, .navbar a.active {
+      color: #00A3FF;
+    }
 
-        .cta-buttons a:hover {
-            background-color: #1e88e5;
-        }
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
 
-        .cta-buttons a i {
-            margin-right: 8px;
-        }
+    .logo::before {
+      content: '◆';
+      color: #00A3FF;
+      margin-right: 8px;
+    }
 
-        .projects-section {
-            background-color: #ffffff;
-            padding: 50px 20px;
-            text-align: center;
-        }
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      background: linear-gradient(135deg, #F5F9FF 0%, #FFFFFF 100%);
+    }
 
-        .projects-section h2 {
-            font-size: 32px;
-            margin-bottom: 30px;
-        }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
 
-        .projects-cards {
-            display: flex;
-            justify-content: space-evenly;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
+    .hero p {
+      font-size: 18px;
+      color: #666666;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
 
-        .project-card {
-            background-color: #f1f1f1;
-            width: 300px;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+    }
 
-        .project-card h3 {
-            font-size: 20px;
-            margin: 10px 0;
-        }
+    .cta-button {
+      background-color: #00A3FF;
+      color: #FFFFFF;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
 
-        .project-card a {
-            background-color: #42a5f5;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            margin-top: 15px;
-            display: inline-flex;
-            align-items: center;
-        }
+    .cta-button:hover {
+      background-color: #0088D4;
+      transform: scale(1.05);
+    }
 
-        .project-card a:hover {
-            background-color: #1e88e5;
-        }
+    .section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .project-card a i {
-            margin-right: 8px;
-        }
+    .section h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      text-align: center;
+    }
 
-        .kol-section {
-            background-color: #444444;
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
+    .about p {
+      font-size: 18px;
+      color: #666666;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-        .kol-section h2 {
-            font-size: 32px;
-            margin-bottom: 30px;
-        }
+    .projects, .kol {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
 
-        .kol-cards {
-            display: flex;
-            justify-content: space-evenly;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
+    .project-card, .kol-card {
+      background-color: #F5F9FF;
+      border: 1px solid #E6E6E6;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .kol-card {
-            background-color: #555;
-            width: 250px;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
+    .project-card:hover, .kol-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
 
-        .kol-card h3 {
-            font-size: 18px;
-            margin: 10px 0;
-        }
+    .project-card h3, .kol-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
 
-        footer {
-            background-color: #1e1e1e;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
+    .project-card p, .kol-card p {
+      font-size: 16px;
+      color: #666666;
+      margin-bottom: 15px;
+    }
 
-        /* Responsiveness */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 48px;
-            }
+    .tech-stack {
+      font-size: 14px;
+      color: #888888;
+      margin-bottom: 10px;
+    }
 
-            header p {
-                font-size: 20px;
-            }
+    .project-card a, .kol-card a {
+      display: inline-block;
+      color: #FFFFFF;
+      background-color: #00A3FF;
+      padding: 8px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      margin: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
 
-            .cta-buttons {
-                flex-direction: column;
-                gap: 20px;
-            }
+    .project-card a:hover, .kol-card a:hover {
+      background-color: #0088D4;
+      transform: scale(1.05);
+    }
 
-            .projects-cards {
-                flex-direction: column;
-                align-items: center;
-            }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #F5F9FF;
+      color: #666666;
+      font-size: 14px;
+    }
 
-            .project-card {
-                width: 90%;
-                margin-bottom: 20px;
-            }
+    .social-links a {
+      margin: 0 10px;
+      color: #00A3FF;
+      text-decoration: none;
+      font-size: 16px;
+    }
 
-            .kol-cards {
-                flex-direction: column;
-                align-items: center;
-            }
+    .copy-email {
+      background: none;
+      border: none;
+      color: #00A3FF;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 5px;
+    }
 
-            .kol-card {
-                width: 90%;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00A3FF;
+      color: #FFFFFF;
+      padding: 10px 15px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 14px;
+      display: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-to-top:hover {
+      background-color: #0088D4;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .navbar a {
+        margin: 5px 0;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .section {
+        padding: 40px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <nav class="navbar">
+    <a href="https://github.com/blockchang" class="logo">BlockZhang</a>
+    <div>
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#kol" class="nav-link">Indonesian KOLs</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+  </nav>
 
-<header>
-    <h1>The Open Network <span style="color: #42a5f5;">for</span> <span style="background: linear-gradient(90deg, #42a5f5, #5c6bc0); -webkit-background-clip: text; color: transparent;">Creators</span></h1>
-    <p>A decentralized and open internet designed to onboard 500M people on-chain, built by the community using technology developed by Telegram.</p>
-</header>
+  <section id="home" class="hero">
+    <h1>Welcome to Steve's Portfolio<span style="color: #42a5f5;">for</span> <span style="background: linear-gradient(90deg, #42a5f5, #5c6bc0); -webkit-background-clip: text; color: transparent;">Creators</span></h1>
+    <p>Hi, I'm Steve, a versatile developer with a diverse background in tech. From blockchain solutions to bot development, I've worked across various domains, blending creativity and technical expertise to build impactful projects.</p>
+    <div class="cta-buttons">
+      <a href="#projects" class="cta-button" aria-label="View my projects">View My Work</a>
+      <a href="#contact" class="cta-button" aria-label="Contact me">Contact Me</a>
+    </div>
+  </section>
 
-<div class="cta-buttons">
-    <a href="https://t.me/stevebendict" target="_blank"><i class="fab fa-telegram"></i>My Telegram</a>
-    <a href="https://github.com/blockchang" target="_blank"><i class="fab fa-github"></i>My GitHub</a>
-</div>
+  <section id="about" class="section about">
+    <h2>About Me</h2>
+    <p>I'm BlockZhang, a developer with a rich background in technology. I've explored multiple fields, including web development, blockchain technology, and automation through bot creation. My experience spans working with global communities, integrating APIs like Telegram, and collaborating with diverse teams to deliver innovative solutions.</p>
+  </section>
 
-<div class="projects-section">
+  <section id="projects" class="section">
     <h2>My Projects</h2>
-    <div class="projects-cards">
-        <div class="project-card">
-            <h3>@TokoAksesBot</h3>
-            <p>A Telegram bot for purchasing stars and premium subscriptions using TON and local payments.</p>
-            <a href="https://github.com/blockchang/ethereum-wallet-bot" target="_blank"><i class="fas fa-bolt"></i>View Project</a>
-        </div>
-        <div class="project-card">
-            <h3>@LapakGiftBot</h3>
-            <p>Facilitates NFT auctions and supports TON/Rupiah top-ups on Telegram.</p>
-            <a href="https://github.com/blockchang/DAO-alert-bot" target="_blank"><i class="fas fa-gift"></i>View Project</a>
-        </div>
-        <div class="project-card">
-            <h3>@BZwalletBot</h3>
-            <p>Ethereum wallet checks using Alchemy API.</p>
-            <a href="https://github.com/blockchang/ethereum-wallet-bot" target="_blank"><i class="fas fa-wallet"></i>View Project</a>
-        </div>
-        <div class="project-card">
-            <h3>@BZdaoBot</h3>
-            <p>DAO alerts via Snapshot API integrated with Telegram groups.</p>
-            <a href="https://github.com/blockchang/DAO-alert-bot" target="_blank"><i class="fas fa-users"></i>View Project</a>
-        </div>
-        <div class="project-card">
-            <h3>@BZdonateBot</h3>
-            <p>TON-based donation system integrated with Telegram groups.</p>
-            <a href="https://github.com/blockchang/bzdonate" target="_blank"><i class="fas fa-hand-holding-heart"></i>View Project</a>
-        </div>
+    <div class="projects">
+      <div class="project-card">
+        <h3>TokoAksesBot</h3>
+        <p>Buy Telegram Stars, premium subs, ghostwriting with local payments.</p>
+        <div class="tech-stack">Tech: Python, TON API, Telegram Bot API</div>
+        <a href="https://t.me/TokoAksesBot" aria-label="TokoAksesBot on Telegram">Telegram</a>
+      </div>
+      <div class="project-card">
+        <h3>LapakGiftBot</h3>
+        <p>Queues NFT auctions in @LapakGift group, TON/Rupiah top-ups.</p>
+        <div class="tech-stack">Tech: Python, TON API, Telegram Bot API</div>
+        <a href="https://t.me/LapakGiftBot" aria-label="LapakGiftBot on Telegram">Telegram</a>
+      </div>
+      <div class="project-card">
+        <h3>BZwalletBot</h3>
+        <p>Ethereum wallet checks with Alchemy API.</p>
+        <div class="tech-stack">Tech: Python, Alchemy API, Telegram Bot API</div>
+        <a href="https://t.me/BZwalletBot" aria-label="BZwalletBot on Telegram">Telegram</a>
+        <a href="https://github.com/blockchang/ethereum-wallet-bot" aria-label="BZwalletBot GitHub repository">GitHub</a>
+      </div>
+      <div class="project-card">
+        <h3>BZdaoBot</h3>
+        <p>Arbitrum DAO alerts via Snapshot API.</p>
+        <div class="tech-stack">Tech: Python, Snapshot API, Telegram Bot API</div>
+        <a href="https://t.me/BZdaoBot" aria-label="BZdaoBot on Telegram">Telegram</a>
+        <a href="https://github.com/blockchang/DAO-alert-bot" aria-label="BZdaoBot GitHub repository">GitHub</a>
+      </div>
+      <div class="project-card">
+        <h3>BZdonateBot</h3>
+        <p>TON donations using Telegram groups.</p>
+        <div class="tech-stack">Tech: Python, TON API, Telegram Bot API</div>
+        <a href="https://t.me/BZdonateBot" aria-label="BZdonateBot on Telegram">Telegram</a>
+        <a href="https://github.com/blockchang/bzdonate" aria-label="BZdonateBot GitHub repository">GitHub</a>
+      </div>
     </div>
-</div>
+  </section>
 
-<div class="kol-section">
-    <h2>My Web3 KOL Network</h2>
-    <div class="kol-cards">
-        <div class="kol-card">
-            <h3>@vanesgd</h3>
-            <a href="https://www.instagram.com/vanesgd" target="_blank"><i class="fab fa-instagram"></i>View Profile</a>
-        </div>
-        <div class="kol-card">
-            <h3>@tradewithsuli</h3>
-            <a href="https://www.instagram.com/tradewithsuli" target="_blank"><i class="fab fa-instagram"></i>View Profile</a>
-        </div>
-        <div class="kol-card">
-            <h3>@febimettasari</h3>
-            <a href="https://www.instagram.com/febimettasari" target="_blank"><i class="fab fa-instagram"></i>View Profile</a>
-        </div>
-        <div class="kol-card">
-            <h3>@morethanspeculation</h3>
-            <a href="https://www.instagram.com/morethanspeculation" target="_blank"><i class="fab fa-instagram"></i>View Profile</a>
-        </div>
+  <section id="kol" class="section">
+    <h2>Indonesian KOL Access</h2>
+    <div class="kol">
+      <div class="kol-card">
+        <h3>@vanesgd</h3>
+        <p>Web3 Project Manager KOL. Collaborated on community engagement strategies.</p>
+        <a href="https://t.me/vanesgd" aria-label="vanesgd on Telegram">Telegram</a>
+      </div>
+      <div class="kol-card">
+        <h3>@febimettasari</h3>
+        <p>Web3 Developer KOL. Worked together on Web3 developer events.</p>
+        <a href="https://t.me/febimettasari" aria-label="febimettasari on Telegram">Telegram</a>
+      </div>
+      <div class="kol-card">
+        <h3>@tradewithsuli</h3>
+        <p>Crypto Trader KOL. Partnered for crypto trading content creation.</p>
+        <a href="https://t.me/tradewithsuli" aria-label="tradewithsuli on Telegram">Telegram</a>
+      </div>
+      <div class="kol-card">
+        <h3>@morethanspeculation</h3>
+        <p>International Web3 Project Podcast. Contributed to Web3 project discussions.</p>
+        <a href="https://t.me/morethanspeculation" aria-label="morethanspeculation on Telegram">Telegram</a>
+      </div>
     </div>
-</div>
+  </section>
 
-<footer>
-    <p>&copy; 2025 Steve Benedict Mulyaputra | All Rights Reserved</p>
-</footer>
+  <footer id="contact">
+    <p>
+      © 2025 BlockZhang. Get in touch: blockzhang@proton.me
+      <button class="copy-email" onclick="copyEmail()" aria-label="Copy email address">Copy Email</button> |
+      <span class="social-links">
+        <a href="https://t.me/stevebendict" aria-label="Telegram profile">Telegram</a>
+        <a href="https://instagram.com/stevebendict" aria-label="Instagram profile">Instagram</a>
+      </span>
+    </p>
+  </footer>
 
+  <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
+
+  <script>
+    // Smooth scrolling and active navbar
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Highlight active section in navbar
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (scrollY >= sectionTop - 60) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Show/hide back-to-top button
+    window.addEventListener('scroll', () => {
+      const backToTop = document.getElementById('backToTop');
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+
+    // Copy email to clipboard
+    function copyEmail() {
+      navigator.clipboard.writeText('blockzhang@proton.me').then(() => {
+        alert('Email copied to clipboard!');
+      });
+    }
+  </script>
 </body>
 </html>
-
