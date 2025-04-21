@@ -5,7 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BlockZhang's Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <style>
+    :root {
+      --primary: #42a5f5;
+      --secondary: #5c6bc0;
+      --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -21,6 +29,7 @@
       background-color: #FFFFFF;
       color: #000000;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     .navbar {
@@ -28,12 +37,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
-      background-color: #FFFFFF;
+      background: linear-gradient(135deg, #FFFFFF, #F5F9FF);
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
     }
 
     .navbar a {
@@ -45,7 +55,7 @@
     }
 
     .navbar a:hover, .navbar a.active {
-      color: #00A3FF;
+      color: var(--primary);
     }
 
     .logo {
@@ -57,19 +67,17 @@
 
     .logo::before {
       content: '◆';
-      color: #00A3FF;
+      color: var(--primary);
       margin-right: 8px;
     }
 
-    /* Navigation links container */
     .nav-links {
       display: flex;
       align-items: center;
     }
 
-    /* Hamburger menu icon */
     .hamburger {
-      display: none; /* Hidden by default on desktop */
+      display: none;
       font-size: 24px;
       cursor: pointer;
       color: #000000;
@@ -85,21 +93,34 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 80px 40px 0; /* Added padding-top to account for navbar */
-      background: linear-gradient(135deg, #F5F9FF 0%, #FFFFFF 100%);
+      padding: 100px 40px 40px;
+      background: #FFFFFF;
       gap: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
     }
 
     .hero-content {
       flex: 1;
       max-width: 600px;
       text-align: left;
+      z-index: 1;
     }
 
     .hero h1 {
       font-size: 48px;
       font-weight: 700;
       margin-bottom: 20px;
+      color: #000000;
     }
 
     .hero p {
@@ -114,30 +135,50 @@
     }
 
     .cta-button {
-      background-color: #00A3FF;
+      background: var(--gradient);
       color: #FFFFFF;
       padding: 12px 30px;
       border-radius: 30px;
       text-decoration: none;
       font-size: 16px;
       font-weight: 500;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
     }
 
     .cta-button:hover {
-      background-color: #0088D4;
       transform: scale(1.05);
+    }
+
+    .cta-button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease;
+    }
+
+    .cta-button:active::after {
+      width: 200px;
+      height: 200px;
     }
 
     .nft-container {
       flex: 1;
       max-width: 400px;
-      background-color: #F5F9FF;
-      border: 1px solid #E6E6E6;
+      background-color: #FFFFFF;
+      border: 2px solid var(--primary);
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      position: relative; /* For positioning navigation arrows */
+      position: relative;
+      z-index: 1;
     }
 
     .nft-container h2 {
@@ -145,60 +186,61 @@
       font-weight: 700;
       margin-bottom: 20px;
       text-align: center;
+      color: var(--primary);
     }
 
     .nft-achievements {
       display: flex;
-      flex-direction: row; /* Horizontal carousel */
-      overflow-x: auto; /* Enable horizontal scrolling */
-      scroll-snap-type: x mandatory; /* Snap to each card */
-      scrollbar-width: none; /* Hide scrollbar for Firefox */
-      -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
-      padding-bottom: 10px; /* Space for smooth scrolling */
+      flex-direction: row;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 10px;
     }
 
     .nft-achievements::-webkit-scrollbar {
-      display: none; /* Hide scrollbar for Chrome/Safari */
+      display: none;
     }
 
     .nft-card {
-      flex: 0 0 200px; /* Fixed width for each card */
+      flex: 0 0 200px;
       background-color: #FFFFFF;
       border: 1px solid #E6E6E6;
       border-radius: 8px;
       padding: 15px;
       text-align: center;
-      margin-right: 15px; /* Space between cards */
-      scroll-snap-align: start; /* Snap alignment for each card */
+      margin-right: 15px;
+      scroll-snap-align: start;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .nft-card:hover {
-      transform: scale(1.05); /* Slightly larger on hover */
+      transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
     .nft-image-wrapper {
-      width: 120px; /* Fixed width for square ratio */
-      height: 120px; /* Fixed height for square ratio */
-      margin: 0 auto 10px; /* Center and add bottom margin */
-      overflow: hidden; /* Ensure image doesn't overflow */
-      border-radius: 8px; /* Match card border radius */
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 10px;
+      overflow: hidden;
+      border-radius: 8px;
     }
 
     .nft-card img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ensure image fits without distortion */
+      object-fit: cover;
       transition: opacity 0.3s ease;
     }
 
     .nft-card img:hover {
-      opacity: 0.9; /* Subtle hover effect on image */
+      opacity: 0.9;
     }
 
     .nft-card h3 {
-      font-size: 16px; /* Smaller font for better fit */
+      font-size: 16px;
       font-weight: 700;
       margin-bottom: 8px;
     }
@@ -211,8 +253,9 @@
 
     .nft-card a {
       display: inline-block;
-      color: #FFFFFF;
-      background-color: #00A3FF;
+      color: var(--primary);
+      background: transparent;
+      border: 2px solid var(--primary);
       padding: 5px 12px;
       border-radius: 20px;
       text-decoration: none;
@@ -221,11 +264,11 @@
     }
 
     .nft-card a:hover {
-      background-color: #0088D4;
+      background-color: var(--primary);
+      color: #FFFFFF;
       transform: scale(1.05);
     }
 
-    /* Navigation arrows */
     .nft-nav {
       position: absolute;
       top: 50%;
@@ -256,6 +299,14 @@
       padding: 80px 40px;
       max-width: 1200px;
       margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .section h2 {
@@ -263,43 +314,145 @@
       font-weight: 700;
       margin-bottom: 40px;
       text-align: center;
+      color: var(--primary);
+    }
+
+    .about {
+      background: linear-gradient(135deg, #F5F9FF, #FFFFFF);
+      border: 3px solid transparent;
+      border-image: var(--gradient) 1;
+      border-radius: 15px;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .profile-img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: rotate(5deg);
     }
 
     .about p {
       font-size: 18px;
       color: #666666;
-      max-width: 800px;
-      margin: 0 auto;
+      margin: 0;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 20px;
       text-align: center;
     }
 
-    .projects, .kol {
+    .skill-item {
+      position: relative;
+      padding: 15px;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .skill-item img {
+      width: 60px;
+      height: 60px;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    .skill-item:hover img {
+      filter: grayscale(0%);
+    }
+
+    .skill-item:hover {
+      transform: scale(1.1);
+    }
+
+    .skill-tooltip {
+      visibility: hidden;
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--primary);
+      color: #FFFFFF;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      z-index: 10;
+    }
+
+    .skill-item:hover .skill-tooltip {
+      visibility: visible;
+    }
+
+    .process-steps {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .step {
+      background: linear-gradient(135deg, #FFFFFF, #F5F9FF);
+      padding: 20px;
+      border-radius: 10px;
+      width: 250px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .step:nth-child(1) { transition-delay: 0.1s; }
+    .step:nth-child(2) { transition-delay: 0.2s; }
+    .step:nth-child(3) { transition-delay: 0.3s; }
+
+    .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
     }
 
-    .project-card, .kol-card {
-      background-color: #F5F9FF;
-      border: 1px solid #E6E6E6;
-      border-radius: 10px;
+    .project-card {
+      background: linear-gradient(135deg, #FFFFFF, #F5F9FF);
       padding: 20px;
+      clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .project-card:hover, .kol-card:hover {
-      transform: translateY(-5px);
+    .project-card:hover {
+      transform: scale(1.05);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .project-card h3, .kol-card h3 {
+    .project-card h3 {
       font-size: 22px;
       font-weight: 700;
       margin-bottom: 10px;
     }
 
-    .project-card p, .kol-card p {
+    .project-card p {
       font-size: 16px;
       color: #666666;
       margin-bottom: 15px;
@@ -311,10 +464,11 @@
       margin-bottom: 10px;
     }
 
-    .project-card a, .kol-card a {
+    .project-card a {
       display: inline-block;
-      color: #FFFFFF;
-      background-color: #00A3FF;
+      color: var(--primary);
+      background: transparent;
+      border: 2px solid var(--primary);
       padding: 8px 20px;
       border-radius: 20px;
       text-decoration: none;
@@ -323,57 +477,121 @@
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
-    .project-card a:hover, .kol-card a:hover {
-      background-color: #0088D4;
+    .project-card a:hover {
+      background-color: var(--primary);
+      color: #FFFFFF;
+      transform: scale(1.05);
+    }
+
+    .kol {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .kol-card {
+      background: linear-gradient(135deg, #FFFFFF, #F5F9FF);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .kol-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .kol-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .kol-card p {
+      font-size: 15px;
+      color: #666666;
+      margin-bottom: 15px;
+    }
+
+    .kol-card a {
+      display: inline-block;
+      color: #FFFFFF;
+      background: var(--gradient);
+      padding: 8px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: transform 0.3s ease;
+    }
+
+    .kol-card a:hover {
       transform: scale(1.05);
     }
 
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #F5F9FF;
+      background: linear-gradient(135deg, #F5F9FF, #FFFFFF);
       color: #666666;
       font-size: 14px;
     }
 
     .social-links a {
       margin: 0 10px;
-      color: #00A3FF;
+      color: var(--primary);
       text-decoration: none;
       font-size: 16px;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.2);
+      text-shadow: 0 0 10px var(--primary);
     }
 
     .copy-email {
       background: none;
       border: none;
-      color: #00A3FF;
+      color: var(--primary);
       cursor: pointer;
       font-size: 14px;
       margin-left: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .copy-email:hover {
+      transform: scale(1.1);
     }
 
     .back-to-top {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #00A3FF;
+      background: var(--gradient);
       color: #FFFFFF;
       padding: 10px 15px;
       border-radius: 50%;
       text-decoration: none;
       font-size: 14px;
       display: none;
-      transition: background-color 0.3s ease;
+      transition: transform 0.3s ease;
     }
 
     .back-to-top:hover {
-      background-color: #0088D4;
+      transform: scale(1.1);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
     }
 
     @media (max-width: 768px) {
       .hero {
         flex-direction: column;
-        padding: 80px 20px 20px; /* Reduced padding-top since navbar is now a dropdown */
+        padding: calc(60px + 20px) 20px 20px;
       }
 
       .hero-content {
@@ -393,24 +611,23 @@
       }
 
       .nft-card {
-        flex: 0 0 180px; /* Slightly smaller on mobile */
+        flex: 0 0 180px;
       }
 
       .nft-image-wrapper {
-        width: 100px; /* Slightly smaller on mobile */
+        width: 100px;
         height: 100px;
       }
 
-      /* Hamburger menu styles */
       .hamburger {
-        display: block; /* Show hamburger icon on mobile */
+        display: block;
       }
 
       .nav-links {
-        display: none; /* Hide links by default on mobile */
+        display: none;
         flex-direction: column;
         position: absolute;
-        top: 100%; /* Position below the navbar */
+        top: 100%;
         left: 0;
         width: 100%;
         background-color: #FFFFFF;
@@ -419,23 +636,23 @@
       }
 
       .nav-links.active {
-        display: flex; /* Show links when active */
+        display: flex;
       }
 
       .nav-links a {
         margin: 0;
-        padding: 15px 20px; /* Larger padding for touch targets */
-        font-size: 16px; /* Larger font for readability */
+        padding: 15px 20px;
+        font-size: 16px;
         text-align: center;
-        border-bottom: 1px solid #E6E6E6; /* Separator between links */
+        border-bottom: 1px solid #E6E6E6;
       }
 
       .nav-links a:last-child {
-        border-bottom: none; /* Remove border for the last link */
+        border-bottom: none;
       }
 
       .nav-links a:hover {
-        background-color: #F5F9FF; /* Subtle hover effect */
+        background-color: #F5F9FF;
       }
 
       .cta-buttons {
@@ -447,12 +664,23 @@
         padding: 40px 20px;
       }
 
+      .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile-img {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 20px;
+      }
+
       footer {
         padding: 15px 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px; /* Space between elements */
+        gap: 10px;
       }
 
       footer p {
@@ -460,27 +688,27 @@
         flex-direction: column;
         align-items: center;
         gap: 8px;
-        font-size: 12px; /* Smaller font for mobile */
+        font-size: 12px;
       }
 
       .social-links {
         display: flex;
         flex-direction: row;
-        gap: 15px; /* Space between Telegram and Instagram links */
+        gap: 15px;
       }
 
       .social-links a {
-        font-size: 14px; /* Smaller font for mobile */
+        font-size: 14px;
       }
 
       .copy-email {
-        font-size: 12px; /* Smaller font for mobile */
+        font-size: 12px;
       }
     }
 
     @media (min-width: 769px) {
       .nav-links {
-        display: flex !important; /* Ensure links are always visible on desktop */
+        display: flex !important;
       }
     }
   </style>
@@ -492,6 +720,7 @@
     <div class="nav-links">
       <a href="#home" class="nav-link">Home</a>
       <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
       <a href="#projects" class="nav-link">Projects</a>
       <a href="#kol" class="nav-link">Indonesian KOLs</a>
       <a href="#contact" class="nav-link">Contact</a>
@@ -499,8 +728,9 @@
   </nav>
 
   <section id="home" class="hero">
+    <div id="particles-js"></div>
     <div class="hero-content">
-      <h1>Welcome to <span style="color: #42a5f5;">Steve's</span> <span style="background: linear-gradient(90deg, #42a5f5, #5c6bc0); -webkit-background-clip: text; color: transparent;">Portfolio</span></h1>
+      <h1>Welcome to <span style="color: var(--primary);">Steve's</span> <span style="background: var(--gradient); -webkit-background-clip: text; color: transparent;">Portfolio</span></h1>
       <p>A versatile developer with a diverse background in tech. From Social Media to blockchain & telegram bot development, I've worked across various domains, blending creativity and technical expertise to build impactful projects mostly in Indonesia.</p>
       <div class="cta-buttons">
         <a href="#projects" class="cta-button" aria-label="View my projects">View My Work</a>
@@ -509,17 +739,96 @@
     </div>
     <div class="nft-container">
       <h2>TON Achievements</h2>
-      <button class="nft-nav nft-nav-left" onclick="scrollNFTs('left')">←</button>
+      <button class="nft-nav nft-nav-left" onclick="scrollNFTs('left')" aria-label="Scroll NFT carousel left">←</button>
       <div class="nft-achievements" id="nftAchievements">
         <p>Loading NFTs...</p>
       </div>
-      <button class="nft-nav nft-nav-right" onclick="scrollNFTs('right')">→</button>
+      <button class="nft-nav nft-nav-right" onclick="scrollNFTs('right')" aria-label="Scroll NFT carousel right">→</button>
     </div>
   </section>
 
   <section id="about" class="section about">
     <h2>About Me</h2>
-    <p>I'm Steve, a developer with a rich background in technology. I've explored multiple fields, including web development, blockchain technology, and automation through bot creation. My experience spans working with global communities, integrating APIs like Telegram, and collaborating with diverse teams to deliver innovative solutions. With a focus on Web3, I've supported communities by collaborating with key opinion leaders (KOLs) and managing social media with precision. My volunteer work within the Web3 ecosystem has deepened my understanding and network, and my technical background in Python, Telegram APIs, and blockchain principles equips me to provide clear, unbiased assessments for community management and moderation.</p>
+    <div class="about-content">
+      <img src="profile.jpg" alt="Steve's Profile Picture" class="profile-img">
+      <p>I'm Steve, a developer with a rich background in technology. I've explored multiple fields, including web development, blockchain technology, and automation through bot creation. My experience spans working with global communities, integrating APIs like Telegram, and collaborating with diverse teams to deliver innovative solutions. With a focus on Web3, I've supported communities by collaborating with key opinion leaders (KOLs) and managing social media with precision. My volunteer work within the Web3 ecosystem has deepened my understanding and network, and my technical background in Python, Telegram APIs, and blockchain principles equips me to provide clear, unbiased assessments for community management and moderation.</p>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/python" alt="Python" loading="lazy">
+        <span class="skill-tooltip">Python</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/func" alt="FunC" loading="lazy">
+        <span class="skill-tooltip">FunC Programming</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/typescript" alt="TypeScript" loading="lazy">
+        <span class="skill-tooltip">TypeScript/JavaScript</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/ton" alt="TON" loading="lazy">
+        <span class="skill-tooltip">TON Virtual Machine</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/tonconnect" alt="TON Connect" loading="lazy">
+        <span class="skill-tooltip">TON Connect</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/jetton" alt="Jetton" loading="lazy">
+        <span class="skill-tooltip">Jetton Processing</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/nft" alt="NFT" loading="lazy">
+        <span class="skill-tooltip">NFT Minting</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/wallet" alt="Wallet" loading="lazy">
+        <span class="skill-tooltip">Wallet Management</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/async" alt="Async" loading="lazy">
+        <span class="skill-tooltip">Asynchronous Programming</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js" loading="lazy">
+        <span class="skill-tooltip">Node.js and npm</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/git" alt="Git" loading="lazy">
+        <span class="skill-tooltip">Git and GitHub</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/pow" alt="PoW" loading="lazy">
+        <span class="skill-tooltip">Proof-of-Work Mining</span>
+      </div>
+      <div class="skill-item">
+        <img src="https://cdn.simpleicons.org/transaction" alt="Transaction" loading="lazy">
+        <span class="skill-tooltip">Transaction Handling</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section">
+    <h2>My Development Process</h2>
+    <div class="process-steps">
+      <div class="step">
+        <h3>1. Ideation</h3>
+        <p>Identify user needs and define project goals (e.g., enabling local payments for TokoAksesBot).</p>
+      </div>
+      <div class="step">
+        <h3>2. Prototyping</h3>
+        <p>Build a minimum viable product using tools like Python, TON API, and FunC.</p>
+      </div>
+      <div class="step">
+        <h3>3. Iteration</h3>
+        <p>Refine the product based on user feedback to enhance functionality and UX.</p>
+      </div>
+    </div>
   </section>
 
   <section id="projects" class="section">
@@ -600,72 +909,59 @@
 
   <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
 
-  <script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-  </script>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
-    // Toggle hamburger menu
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+      return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
+      if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+        try {
+          var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+          var firstSheetName = workbook.SheetNames[0];
+          var worksheet = workbook.Sheets[firstSheetName];
+          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+          var filteredData = jsonData.filter(row => row.some(filledCell));
+          var headerRowIndex = filteredData.findIndex((row, index) =>
+            row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+          );
+          if (headerRowIndex === -1 || headerRowIndex > 25) {
+            headerRowIndex = 0;
+          }
+          var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+          csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+          return csv;
+        } catch (e) {
+          console.error(e);
+          return "";
+        }
+      }
+      return gk_fileData[filename] || "";
+    }
+
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
     hamburger.addEventListener('click', () => {
       navLinks.classList.toggle('active');
+      hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
     });
 
-    // Smooth scrolling and active navbar
     document.querySelectorAll('.nav-link').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         const targetSection = document.getElementById(targetId);
         targetSection.scrollIntoView({ behavior: 'smooth' });
-        // Close the menu on mobile after clicking a link
         if (window.innerWidth <= 768) {
           navLinks.classList.remove('active');
+          hamburger.textContent = '☰';
         }
       });
     });
 
-    // Highlight active section in navbar
     window.addEventListener('scroll', () => {
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('.nav-link');
@@ -684,7 +980,6 @@
       });
     });
 
-    // Show/hide back-to-top button
     window.addEventListener('scroll', () => {
       const backToTop = document.getElementById('backToTop');
       if (window.scrollY > 300) {
@@ -694,58 +989,54 @@
       }
     });
 
-    // Copy email to clipboard
     function copyEmail() {
       navigator.clipboard.writeText('blockzhang@proton.me').then(() => {
         alert('Email copied to clipboard!');
       });
     }
 
-    // Manually defined NFT data with image URLs
     const manualNFTs = [
       {
         id: '1',
         name: 'True TVM Developer',
-        image: 'TVM.jpg', // Replace with your actual image URL
+        image: 'TVM.jpg',
         description: 'Earned through TON Builder Tutorial'
       },
       {
         id: '2',
         name: 'Smart-contracts Master',
-        image: 'SCM.jpg', // Replace with your actual image URL
+        image: 'SCM.jpg',
         description: 'Earned through TON Builder Tutorial'
       },
       {
         id: '3',
         name: 'TON Web Apps Master',
-        image: 'WAM.jpg', // Replace with your actual image URL
+        image: 'WAM.jpg',
         description: 'Earned through TON Builder Tutorial'
       },
       {
         id: '4',
         name: 'Wallets Master',
-        image: 'WM.jpg', // Replace with your actual image URL
+        image: 'WM.jpg',
         description: 'Earned through TON Builder Tutorial'
       },
       {
         id: '5',
         name: 'TON Onboarding Challenge',
-        image: 'TOC.jpg', // Replace with your actual image URL
+        image: 'TOC.jpg',
         description: 'Earned through TON Builder Tutorial'
       }
     ];
 
-    // Function to display NFTs
     function displayNFTs(nfts) {
       const nftContainer = document.getElementById('nftAchievements');
-      nftContainer.innerHTML = ''; // Clear loading message
-
+      nftContainer.innerHTML = '';
       nfts.forEach(nft => {
         const nftCard = document.createElement('div');
         nftCard.classList.add('nft-card');
         nftCard.innerHTML = `
           <div class="nft-image-wrapper">
-            <img src="${nft.image}" alt="${nft.name}">
+            <img src="${nft.image}" alt="${nft.name}" loading="lazy">
           </div>
           <h3>${nft.name}</h3>
           <p>${nft.description}</p>
@@ -755,10 +1046,9 @@
       });
     }
 
-    // Function to scroll the carousel
     function scrollNFTs(direction) {
       const nftContainer = document.getElementById('nftAchievements');
-      const scrollAmount = 215; // Width of one card (200px) + margin (15px)
+      const scrollAmount = 215;
       if (direction === 'left') {
         nftContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
       } else {
@@ -766,10 +1056,47 @@
       }
     }
 
-    // Load manually defined NFTs when the page loads
     window.addEventListener('DOMContentLoaded', () => {
       displayNFTs(manualNFTs);
+
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 40, density: { enable: true, value_area: 800 } },
+          color: { value: '#42a5f5' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.3, random: true },
+          size: { value: 2, random: true },
+          line_linked: { enable: true, distance: 100, color: '#42a5f5', opacity: 0.3, width: 1 },
+          move: { enable: true, speed: 1, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: false }, resize: true },
+          modes: { grab: { distance: 140, line_linked: { opacity: 0.5 } } }
+        },
+        retina_detect: true
+      });
+
+      VanillaTilt.init(document.querySelectorAll('.project-card, .kol-card'), {
+        max: 15,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.5
+      });
+
+      const sections = document.querySelectorAll('.section');
+      const steps = document.querySelectorAll('.step');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.2 });
+
+      sections.forEach(section => observer.observe(section));
+      steps.forEach(step => observer.observe(step));
     });
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933e717a2e946746',t:'MTc0NTI1NDg4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
