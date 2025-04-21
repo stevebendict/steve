@@ -68,7 +68,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 40px;
+      padding: 80px 40px 0; /* Added padding-top to account for navbar */
       background: linear-gradient(135deg, #F5F9FF 0%, #FFFFFF 100%);
       gap: 40px;
     }
@@ -356,7 +356,7 @@
     @media (max-width: 768px) {
       .hero {
         flex-direction: column;
-        padding: 20px;
+        padding: 300px 20px 20px; /* Increased padding-top for mobile to account for navbar height */
       }
 
       .hero-content {
@@ -476,11 +476,11 @@
     </div>
     <div class="nft-container">
       <h2>TON Achievements</h2>
-      <button class="nft-nav nft-nav-left" onclick="scrollNFTs('left')">&larr;</button>
+      <button class="nft-nav nft-nav-left" onclick="scrollNFTs('left')">←</button>
       <div class="nft-achievements" id="nftAchievements">
         <p>Loading NFTs...</p>
       </div>
-      <button class="nft-nav nft-nav-right" onclick="scrollNFTs('right')">&rarr;</button>
+      <button class="nft-nav nft-nav-right" onclick="scrollNFTs('right')">→</button>
     </div>
   </section>
 
@@ -556,7 +556,7 @@
 
   <footer id="contact">
     <p>
-      © 2025 BlockZhang. Get in touch: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bedcd2d1ddd5c4d6dfd0d9fececcd1cad1d090d3db">[email protected]</a>
+      © 2025 BlockZhang. Get in touch: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fedcd2d1ddd5c4d6dfd0d9bececcd1cad1d090d3db">[email protected]</a>
       <button class="copy-email" onclick="copyEmail()" aria-label="Copy email address">Copy Email</button> |
       <span class="social-links">
         <a href="https://t.me/stevebendict" aria-label="Telegram profile">Telegram</a>
