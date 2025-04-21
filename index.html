@@ -317,6 +317,14 @@
       color: var(--primary);
     }
 
+    .section h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #000000;
+    }
+
     .about {
       background: linear-gradient(135deg, #F5F9FF, #FFFFFF);
       border: 3px solid transparent;
@@ -351,6 +359,12 @@
       font-size: 18px;
       color: #666666;
       margin: 0;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
     }
 
     .skills-grid {
@@ -398,6 +412,23 @@
 
     .skill-item:hover .skill-tooltip {
       visibility: visible;
+    }
+
+    .other-skills {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .other-skills ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      font-size: 16px;
+      color: #666666;
+    }
+
+    .other-skills li {
+      margin-bottom: 10px;
     }
 
     .process-steps {
@@ -675,6 +706,15 @@
         margin: 0 auto 20px;
       }
 
+      .other-skills {
+        text-align: center;
+      }
+
+      .other-skills ul {
+        padding-left: 0;
+        list-style-position: inside;
+      }
+
       footer {
         padding: 15px 20px;
         display: flex;
@@ -730,8 +770,8 @@
   <section id="home" class="hero">
     <div id="particles-js"></div>
     <div class="hero-content">
-      <h1>Welcome to <span style="color: var(--primary);">Steve's</span> <span style="background: var(--gradient); -webkit-background-clip: text; color: transparent;">Portfolio</span></h1>
-      <p>A versatile developer with a diverse background in tech. From Social Media to blockchain & telegram bot development, I've worked across various domains, blending creativity and technical expertise to build impactful projects mostly in Indonesia.</p>
+      <h1>Aspiring Web3 Developer & <span style="color: var(--primary);">Media Expert</span></h1>
+      <p>I'm Steve, blending my passion for learning Web3 development with years of experience in video production and social media strategy. From building TON bots to creating engaging content for communities, I bring a user-focused approach to every project.</p>
       <div class="cta-buttons">
         <a href="#projects" class="cta-button" aria-label="View my projects">View My Work</a>
         <a href="#contact" class="cta-button" aria-label="Contact me">Contact Me</a>
@@ -751,64 +791,79 @@
     <h2>About Me</h2>
     <div class="about-content">
       <img src="profile.jpg" alt="Steve's Profile Picture" class="profile-img">
-      <p>I'm Steve, a developer with a rich background in technology. I've explored multiple fields, including web development, blockchain technology, and automation through bot creation. My experience spans working with global communities, integrating APIs like Telegram, and collaborating with diverse teams to deliver innovative solutions. With a focus on Web3, I've supported communities by collaborating with key opinion leaders (KOLs) and managing social media with precision. My volunteer work within the Web3 ecosystem has deepened my understanding and network, and my technical background in Python, Telegram APIs, and blockchain principles equips me to provide clear, unbiased assessments for community management and moderation.</p>
+      <p>I'm Steve, an aspiring Web3 professional with a unique blend of skills. My journey began in video production, where I spent years crafting compelling content and managing social media for clients at my agency, honing my ability to connect with audiences. Inspired by blockchain, I’ve recently dived into Web3, learning to build Telegram bots and minting NFTs on TON to explore its potential. While I’m early in my programming journey, my projects reflect my eagerness to grow. I excel at understanding users, creating engaging media, and collaborating with communities, skills I’ve applied working with Indonesian KOLs and Web3 projects. Whether developing, managing communities, or designing products, I bring creativity, empathy, and a commitment to learning.</p>
     </div>
   </section>
 
   <section id="skills" class="section">
-    <h2>Technical Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/python" alt="Python" loading="lazy">
-        <span class="skill-tooltip">Python</span>
+    <h2>Skills</h2>
+    <div class="skills-container">
+      <div>
+        <h3>Programming Skills</h3>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/python" alt="Python" loading="lazy">
+            <span class="skill-tooltip">Python</span>
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/typescript" alt="TypeScript" loading="lazy">
+            <span class="skill-tooltip">TypeScript/JavaScript</span>
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/ton" alt="TON" loading="lazy">
+            <span class="skill-tooltip">TON Virtual Machine</span>
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js" loading="lazy">
+            <span class="skill-tooltip">Node.js and npm</span>
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/git" alt="Git" loading="lazy">
+            <span class="skill-tooltip">Git and GitHub</span>
+          </div>
+        </div>
       </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/func" alt="FunC" loading="lazy">
-        <span class="skill-tooltip">FunC Programming</span>
+      <div>
+        <h3>Creative & Media Skills</h3>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/adobeaftereffects" alt="After Effects" loading="lazy">
+            <span class="skill-tooltip">After Effects</span>
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/adobepremierepro" alt="Premiere Pro" loading="lazy">
+            <span class="skill-tooltip">Premiere Pro</span>
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/davinciresolve" alt="DaVinci Resolve" loading="lazy">
+            <span class="skill-tooltip">DaVinci Resolve</span>
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/adobephotoshop" alt="Photoshop" loading="lazy">
+            <span class="skill-tooltip">Photoshop</span>
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/adobeillustrator" alt="Illustrator" loading="lazy">
+            <span class="skill-tooltip">Illustrator</span>
+          </div>
+          <div class="skill-item">
+            <img src="https://cdn.simpleicons.org/canva" alt="Canva" loading="lazy">
+            <span class="skill-tooltip">Canva</span>
+          </div>
+        </div>
       </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/typescript" alt="TypeScript" loading="lazy">
-        <span class="skill-tooltip">TypeScript/JavaScript</span>
-      </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/ton" alt="TON" loading="lazy">
-        <span class="skill-tooltip">TON Virtual Machine</span>
-      </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/tonconnect" alt="TON Connect" loading="lazy">
-        <span class="skill-tooltip">TON Connect</span>
-      </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/jetton" alt="Jetton" loading="lazy">
-        <span class="skill-tooltip">Jetton Processing</span>
-      </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/nft" alt="NFT" loading="lazy">
-        <span class="skill-tooltip">NFT Minting</span>
-      </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/wallet" alt="Wallet" loading="lazy">
-        <span class="skill-tooltip">Wallet Management</span>
-      </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/async" alt="Async" loading="lazy">
-        <span class="skill-tooltip">Asynchronous Programming</span>
-      </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js" loading="lazy">
-        <span class="skill-tooltip">Node.js and npm</span>
-      </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/git" alt="Git" loading="lazy">
-        <span class="skill-tooltip">Git and GitHub</span>
-      </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/pow" alt="PoW" loading="lazy">
-        <span class="skill-tooltip">Proof-of-Work Mining</span>
-      </div>
-      <div class="skill-item">
-        <img src="https://cdn.simpleicons.org/transaction" alt="Transaction" loading="lazy">
-        <span class="skill-tooltip">Transaction Handling</span>
+      <div class="other-skills">
+        <h3>Other Technical Skills</h3>
+        <ul>
+          <li>FunC Programming</li>
+          <li>TON Connect</li>
+          <li>Jetton Processing</li>
+          <li>NFT Minting</li>
+          <li>Wallet Management</li>
+          <li>Asynchronous Programming</li>
+          <li>Proof-of-Work Mining</li>
+          <li>Transaction Handling</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -818,15 +873,15 @@
     <div class="process-steps">
       <div class="step">
         <h3>1. Ideation</h3>
-        <p>Identify user needs and define project goals (e.g., enabling local payments for TokoAksesBot).</p>
+        <p>Understand user needs and set goals, like enabling local payments for TokoAksesBot.</p>
       </div>
       <div class="step">
         <h3>2. Prototyping</h3>
-        <p>Build a minimum viable product using tools like Python, TON API, and FunC.</p>
+        <p>Create initial versions using tools like Python and TON API to test ideas.</p>
       </div>
       <div class="step">
         <h3>3. Iteration</h3>
-        <p>Refine the product based on user feedback to enhance functionality and UX.</p>
+        <p>Refine based on feedback to improve functionality and user experience.</p>
       </div>
     </div>
   </section>
@@ -836,33 +891,33 @@
     <div class="projects">
       <div class="project-card">
         <h3>TokoAksesBot</h3>
-        <p>Buy Telegram Stars, premium subs, ghostwriting with local payments.</p>
+        <p>Built to explore TON payments, enabling Telegram Stars and subscriptions with local methods.</p>
         <div class="tech-stack">Tech: Python, TON API, Telegram Bot API</div>
         <a href="https://t.me/TokoAksesBot" aria-label="TokoAksesBot on Telegram">Telegram</a>
       </div>
       <div class="project-card">
         <h3>LapakGiftBot</h3>
-        <p>Queues NFT auctions in @LapakGift group, TON/Rupiah top-ups.</p>
+        <p>Created to learn NFT auctions, managing TON/Rupiah top-ups in @LapakGift.</p>
         <div class="tech-stack">Tech: Python, TON API, Telegram Bot API</div>
         <a href="https://t.me/LapakGiftBot" aria-label="LapakGiftBot on Telegram">Telegram</a>
       </div>
       <div class="project-card">
         <h3>BZwalletBot</h3>
-        <p>Ethereum wallet checks with Alchemy API.</p>
+        <p>Developed to study Ethereum APIs, checking wallets with Alchemy.</p>
         <div class="tech-stack">Tech: Python, Alchemy API, Telegram Bot API</div>
         <a href="https://t.me/BZwalletBot" aria-label="BZwalletBot on Telegram">Telegram</a>
         <a href="https://github.com/blockchang/ethereum-wallet-bot" aria-label="BZwalletBot GitHub repository">GitHub</a>
       </div>
       <div class="project-card">
         <h3>BZdaoBot</h3>
-        <p>Arbitrum DAO alerts via Snapshot API.</p>
+        <p>Built to explore DAO tools, sending Arbitrum alerts via Snapshot API.</p>
         <div class="tech-stack">Tech: Python, Snapshot API, Telegram Bot API</div>
         <a href="https://t.me/BZdaoBot" aria-label="BZdaoBot on Telegram">Telegram</a>
         <a href="https://github.com/blockchang/DAO-alert-bot" aria-label="BZdaoBot GitHub repository">GitHub</a>
       </div>
       <div class="project-card">
         <h3>BZdonateBot</h3>
-        <p>TON donations using Telegram groups.</p>
+        <p>Created to learn TON donations, enabling contributions in Telegram groups.</p>
         <div class="tech-stack">Tech: Python, TON API, Telegram Bot API</div>
         <a href="https://t.me/BZdonateBot" aria-label="BZdonateBot on Telegram">Telegram</a>
         <a href="https://github.com/blockchang/donate-bot" aria-label="BZdonateBot GitHub repository">GitHub</a>
@@ -891,7 +946,7 @@
       <div class="kol-card">
         <h3>@morethanspeculation</h3>
         <p>International Web3 Project Podcast. Contributed to Web3 project discussions.</p>
-        <a href="https://instagram.com/morethanspeculation" aria-label="morethanspeculation on Telegram">Instagram</a>
+        <a href="https://instagram.com/morethanspeculation" aria-label="morethanspeculation on Instagram">Instagram</a>
       </div>
     </div>
   </section>
@@ -1061,7 +1116,7 @@
 
       particlesJS('particles-js', {
         particles: {
-          number: { value: 40, density: { enable: true, value_area: 800 } },
+          number: { value: 30, density: { enable: true, value_area: 800 } },
           color: { value: '#42a5f5' },
           shape: { type: 'circle' },
           opacity: { value: 0.3, random: true },
