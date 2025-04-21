@@ -161,12 +161,18 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
+    .nft-image-wrapper {
+      width: 120px; /* Fixed width for square ratio */
+      height: 120px; /* Fixed height for square ratio */
+      margin: 0 auto 10px; /* Center and add bottom margin */
+      overflow: hidden; /* Ensure image doesn't overflow */
+      border-radius: 8px; /* Match card border radius */
+    }
+
     .nft-card img {
       width: 100%;
-      height: 120px; /* Slightly smaller for better fit */
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 10px;
+      height: 100%;
+      object-fit: cover; /* Ensure image fits without distortion */
       transition: opacity 0.3s ease;
     }
 
@@ -373,13 +379,37 @@
         flex: 0 0 180px; /* Slightly smaller on mobile */
       }
 
+      .nft-image-wrapper {
+        width: 100px; /* Slightly smaller on mobile */
+        height: 100px;
+      }
+
       .navbar {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px; /* Increased gap for better spacing */
+        padding: 15px 20px; /* Adjusted padding */
+        align-items: center; /* Center-align items */
+      }
+
+      .navbar div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px; /* Space between links */
       }
 
       .navbar a {
-        margin: 5px 0;
+        margin: 0; /* Remove left margin */
+        padding: 8px 15px; /* Add padding for better touch target */
+        font-size: 14px; /* Slightly smaller font */
+        width: 100%; /* Full width for better alignment */
+        text-align: center;
+        border-radius: 5px; /* Subtle rounding */
+        transition: background-color 0.3s ease;
+      }
+
+      .navbar a:hover {
+        background-color: #F5F9FF; /* Subtle background on hover */
       }
 
       .cta-buttons {
@@ -389,6 +419,36 @@
 
       .section {
         padding: 40px 20px;
+      }
+
+      footer {
+        padding: 15px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px; /* Space between elements */
+      }
+
+      footer p {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px; /* Smaller font for mobile */
+      }
+
+      .social-links {
+        display: flex;
+        flex-direction: row;
+        gap: 15px; /* Space between Telegram and Instagram links */
+      }
+
+      .social-links a {
+        font-size: 14px; /* Smaller font for mobile */
+      }
+
+      .copy-email {
+        font-size: 12px; /* Smaller font for mobile */
       }
     }
   </style>
@@ -639,7 +699,9 @@
         const nftCard = document.createElement('div');
         nftCard.classList.add('nft-card');
         nftCard.innerHTML = `
-          <img src="${nft.image}" alt="${nft.name}">
+          <div class="nft-image-wrapper">
+            <img src="${nft.image}" alt="${nft.name}">
+          </div>
           <h3>${nft.name}</h3>
           <p>${nft.description}</p>
           <a href="https://getgems.io/nft/${nft.id}" aria-label="View NFT on Getgems">View on Getgems</a>
@@ -664,5 +726,5 @@
       displayNFTs(manualNFTs);
     });
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933e3e888a0a12de',t:'MTc0NTI1Mjc5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933e717a2e946746',t:'MTc0NTI1NDg4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
